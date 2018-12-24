@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fantasy League of Legends", "WindowsFormsApplication2\Fantasy League of Legends.csproj", "{F1AC7EF9-2A30-4D94-9E87-CAB895F48853}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1AC7EF9-2A30-4D94-9E87-CAB895F48853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1AC7EF9-2A30-4D94-9E87-CAB895F48853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1AC7EF9-2A30-4D94-9E87-CAB895F48853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1AC7EF9-2A30-4D94-9E87-CAB895F48853}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

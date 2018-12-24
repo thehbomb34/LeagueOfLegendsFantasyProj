@@ -1,0 +1,14 @@
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe.config
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.pdb
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WebDriver.dll
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WebDriver.Support.dll
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\Newtonsoft.Json.xml
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WebDriver.xml
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\bin\Debug\WebDriver.Support.xml
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\obj\Debug\Fantasy League of Legends.csprojResolveAssemblyReference.cache
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Properties.Resources.resources
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\obj\Debug\Fantasy League of Legends.csproj.GenerateResource.Cache
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
+C:\Users\the_hbomb\Documents\Visual Studio 2015\Projects\Fantasy League of Legends proj\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
