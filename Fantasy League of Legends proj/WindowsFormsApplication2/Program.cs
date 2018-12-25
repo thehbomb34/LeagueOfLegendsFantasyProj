@@ -70,7 +70,8 @@ namespace WindowsFormsApplication2
 				{
 					dbInfo.fillPlayers(currPlayer.Text);
 				}
-				else
+				//code is dogshit as well, I'll fix it up sometime
+				else if (currPlayer.Text.Length > 20)
 				{
 					//System.Diagnostics.Debug.WriteLine(currPlayer.Text);
 					String[] stats = currPlayer.Text.Split();
@@ -82,10 +83,10 @@ namespace WindowsFormsApplication2
 						k++;
 						rowPlayerName += " " + stats[k];
 					}
-					System.Diagnostics.Debug.WriteLine("fullName" + rowPlayerName);
+					System.Diagnostics.Debug.WriteLine("fullName: " + rowPlayerName);
 					k++;
 					string rowTeamName = stats[k];
-					while (!currTeams.AsEnumerable().Any(row => rowTeamName == row.Field<String>("TEAM_NAME")))
+					while (!currTeams.AsEnumerable().Any(row => rowTeamName == row.Field<String>("SHORT_NAME")))
 					{
 						k++;
 						rowTeamName += " " + stats[k];
