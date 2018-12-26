@@ -17,7 +17,7 @@ namespace WindowsFormsApplication2
 			row = lineToParse;
 		}
 
-		public void parseLine(DataTable playerList, DataTable teamList)
+		public playerStatRow parseLine(DataTable playerList, DataTable teamList)
 		{
 			int k = 0;
 			//iterate through until you have player
@@ -37,18 +37,21 @@ namespace WindowsFormsApplication2
 			}
 			System.Diagnostics.Debug.WriteLine("teamName: " + rowTeamName);
 			string rowPlayerPos = row[k + 1];
-			string rowGames = row[k + 2];
-			string winPer = row[k + 3];
-			string rowWinPer = row[k + 4];
-			string rowKills = row[k + 5];
-			string rowDeaths = row[k + 6];
-			string rowAssists = row[k + 7];
-			string rowKda = row[k + 8];
-			string rowKpPer = row[k + 9];
-			string rowGdTen = row[k + 10];
-			string rowXpdTen = row[k + 11];
-			string rowCsdTen = row[k + 12];
-			string rowCspm = row[k + 13];
+			int rowGames = Int32.Parse(row[k + 2]);
+			float rowWinPer = float.Parse(row[k + 3]);
+			int rowKills = Int32.Parse(row[k + 4]);
+			int rowDeaths = Int32.Parse(row[k + 5]);
+			int rowAssists = Int32.Parse(row[k + 6]);
+			float rowKda = float.Parse(row[k + 7]);
+			float rowKpPer = float.Parse(row[k + 8]);
+			int rowGdTen = Int32.Parse(row[k + 9]);
+			int rowXpdTen = Int32.Parse(row[k + 10]);
+			float rowCsdTen = float.Parse(row[k + 11]);
+			float rowCspm = float.Parse(row[k + 12]);
+			return new playerStatRow(rowPlayerName, rowTeamName, rowPlayerPos,
+												rowGames, rowWinPer, rowKills, rowDeaths, rowAssists,
+												rowKda, rowKpPer, rowGdTen, rowXpdTen, rowCsdTen, rowCspm);
+
 		}
 	}
 }

@@ -75,23 +75,8 @@ namespace WindowsFormsApplication2
 				{
 					//System.Diagnostics.Debug.WriteLine(currPlayer.Text);
 					String[] stats = currPlayer.Text.Split();
-					int k = 0;
-					//iterate through until you have player
-					string rowPlayerName = stats[k];
-					while (!currPlayers.AsEnumerable().Any(row => rowPlayerName == row.Field<String>("PLAYER_NAME")))
-					{
-						k++;
-						rowPlayerName += " " + stats[k];
-					}
-					System.Diagnostics.Debug.WriteLine("fullName: " + rowPlayerName);
-					k++;
-					string rowTeamName = stats[k];
-					while (!currTeams.AsEnumerable().Any(row => rowTeamName == row.Field<String>("SHORT_NAME")))
-					{
-						k++;
-						rowTeamName += " " + stats[k];
-					}
-					System.Diagnostics.Debug.WriteLine("teamName" + rowTeamName);
+					rowParser playerStats = new rowParser(stats);
+					playerStatRow rowToAdd = playerStats.parseLine(currPlayers, currTeams);
 				}
 			}
 		}

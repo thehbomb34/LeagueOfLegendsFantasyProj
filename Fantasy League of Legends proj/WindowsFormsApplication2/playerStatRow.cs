@@ -41,5 +41,10 @@ namespace WindowsFormsApplication2
 			this.csdTen = csdTen;
 			this.cspm = cspm;
 		}
+
+		public void printValues()
+		{
+
+		}
 	}
 }
