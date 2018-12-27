@@ -77,6 +77,7 @@ namespace WindowsFormsApplication2
 					String[] stats = currPlayer.Text.Split();
 					rowParser playerStats = new rowParser(stats);
 					playerStatRow rowToAdd = playerStats.parseLine(currPlayers, currTeams);
+					rowToAdd.printValues();
 				}
 			}
 		}

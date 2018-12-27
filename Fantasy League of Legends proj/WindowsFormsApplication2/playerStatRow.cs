@@ -44,6 +44,20 @@ namespace WindowsFormsApplication2
 
 		public void printValues()
 		{
+			System.Diagnostics.Debug.WriteLine("player: " + this.player + "\n" +
+												"team: " + this.team + "\n" +
+												"position: " + this.position + "\n" +
+												"games: " + this.games + "\n" +
+												"win percentage: " + this.winPer + "\n" +
+												"kills: " + this.kills + "\n" +
+												"deaths: " + this.deaths + "\n" +
+												"assists: " + this.assists + "\n" +
+												"K/D/A: " + this.kda + "\n" +
+												"kpPer: " + this.kpPer + "\n" +
+												"gold diff Ten: " + this.gdTen + "\n" +
+												"xp diff Ten: " + this.xpdTen + "\n" +
+												"cs diff Ten: " + this.csdTen + "\n" +
+												"cs per min: " + this.cspm + "\n");
 
 		}
 	}

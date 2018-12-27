@@ -38,20 +38,24 @@ namespace WindowsFormsApplication2
 			System.Diagnostics.Debug.WriteLine("teamName: " + rowTeamName);
 			string rowPlayerPos = row[k + 1];
 			int rowGames = Int32.Parse(row[k + 2]);
-			float rowWinPer = float.Parse(row[k + 3]);
+			float rowWinPer = parsePercentageToDecimal(row[k + 3]);
 			int rowKills = Int32.Parse(row[k + 4]);
 			int rowDeaths = Int32.Parse(row[k + 5]);
-			int rowAssists = Int32.Parse(row[k + 6]);
 			float rowKda = float.Parse(row[k + 7]);
-			float rowKpPer = float.Parse(row[k + 8]);
-			int rowGdTen = Int32.Parse(row[k + 9]);
-			int rowXpdTen = Int32.Parse(row[k + 10]);
-			float rowCsdTen = float.Parse(row[k + 11]);
-			float rowCspm = float.Parse(row[k + 12]);
+			float rowKpPer = parsePercentageToDecimal(row[k + 8]);
+			int rowGdTen = Int32.Parse(row[k + 11]);
+			int rowXpdTen = Int32.Parse(row[k + 12]);
+			float rowCsdTen = float.Parse(row[k + 13]);
+			float rowCspm = float.Parse(row[k + 14]);
 			return new playerStatRow(rowPlayerName, rowTeamName, rowPlayerPos,
 												rowGames, rowWinPer, rowKills, rowDeaths, rowAssists,
 												rowKda, rowKpPer, rowGdTen, rowXpdTen, rowCsdTen, rowCspm);
 
+		}
+
+		public static float parsePercentageToDecimal(string row)
+		{
+			return float.Parse(row.Replace("%", string.Empty)) / 100;
 		}
 	}
 }
