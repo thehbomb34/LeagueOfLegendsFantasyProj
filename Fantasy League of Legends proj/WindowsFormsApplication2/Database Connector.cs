@@ -59,5 +59,8 @@ namespace WindowsFormsApplication2
 			this.con.Close();
 		}
 
+		public void fillPlayerStats(playerStatRow addRow)
+		{
+		}
 	}
 }

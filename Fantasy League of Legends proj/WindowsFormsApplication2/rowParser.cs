@@ -41,6 +41,7 @@ namespace WindowsFormsApplication2
 			float rowWinPer = parsePercentageToDecimal(row[k + 3]);
 			int rowKills = Int32.Parse(row[k + 4]);
 			int rowDeaths = Int32.Parse(row[k + 5]);
+			int rowAssists = Int32.Parse(row[k + 6]);
 			float rowKda = float.Parse(row[k + 7]);
 			float rowKpPer = parsePercentageToDecimal(row[k + 8]);
 			int rowGdTen = Int32.Parse(row[k + 11]);

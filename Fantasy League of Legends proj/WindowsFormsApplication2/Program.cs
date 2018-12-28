@@ -73,11 +73,11 @@ namespace WindowsFormsApplication2
 				//code is dogshit as well, I'll fix it up sometime
 				else if (currPlayer.Text.Length > 20)
 				{
-					//System.Diagnostics.Debug.WriteLine(currPlayer.Text);
 					String[] stats = currPlayer.Text.Split();
 					rowParser playerStats = new rowParser(stats);
 					playerStatRow rowToAdd = playerStats.parseLine(currPlayers, currTeams);
 					rowToAdd.printValues();
+
 				}
 			}
 		}
