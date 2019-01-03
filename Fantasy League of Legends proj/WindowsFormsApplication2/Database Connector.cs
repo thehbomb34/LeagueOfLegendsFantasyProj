@@ -33,6 +33,56 @@ namespace WindowsFormsApplication2
 			return teamTable;
 		}
 
+		public DataTable getPlayerIdByName(string playerName)
+		{
+			DataTable playerNameTable = new DataTable();
+			string playerNameQuery = "select PLAYER_ID from LeagueOfLegendsStats.dbo.League_Player where PLAYER_NAME like @playerName";
+			SqlCommand command = new SqlCommand(playerNameQuery, this.con);
+			this.con.Open();
+
+			command.Parameters.AddWithValue("@playerName", playerName);
+			SqlDataAdapter data = new SqlDataAdapter(command);
+			data.Fill(playerNameTable);
+			this.con.Close();
+			data.Dispose();
+			return playerNameTable;
+		}
+
+		public DataTable getTeamIdByName(string teamName)
+		{
+			DataTable teamNameTable = new DataTable();
+			string teamNameQuery = "select TEAM_ID from LeagueOfLegendsStats.dbo.league_team where TEAM_NAME like @teamName";
+			SqlCommand command = new SqlCommand(teamNameQuery, this.con);
+			this.con.Open();
+
+			command.Parameters.AddWithValue("@teamName", teamName);
+			SqlDataAdapter data = new SqlDataAdapter(command);
+			data.Fill(teamNameTable);
+			this.con.Close();
+			data.Dispose();
+			return teamNameTable;
+		}
+
+		public DataTable getPosIdByName(string posName)
+		{
+			DataTable posNameTable = new DataTable();
+			string posNameQuery = "select POSITION_ID from LeagueOfLegendsStats.dbo.league_position where POSITION_DISP_NAME like @posName";
+			SqlCommand command = new SqlCommand(posNameQuery, this.con);
+			this.con.Open();
+
+			command.Parameters.AddWithValue("@posName", posName);
+			SqlDataAdapter data = new SqlDataAdapter(command);
+			data.Fill(posNameTable);
+			this.con.Close();
+			data.Dispose();
+			return posNameTable;
+		}
+
+		//Need to create global season table with spring / summer split for this one
+		public DataTable getCurrentSplitID()
+		{
+		}
+
 		public DataTable getPlayers()
 		{
 			DataTable playersTable = new DataTable();

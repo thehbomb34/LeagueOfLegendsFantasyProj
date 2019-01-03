@@ -58,7 +58,6 @@ namespace WindowsFormsApplication2
 												"xp diff Ten: " + this.xpdTen + "\n" +
 												"cs diff Ten: " + this.csdTen + "\n" +
 												"cs per min: " + this.cspm + "\n");
-
 		}
 	}
 }
