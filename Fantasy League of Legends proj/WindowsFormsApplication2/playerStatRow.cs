@@ -8,20 +8,20 @@ namespace WindowsFormsApplication2
 {
 	class playerStatRow
 	{
-		private string player;
-		private string team;
-		private string position;
-		private int games;
-		private float winPer;
-		private int kills;
-		private int deaths;
-		private int assists;
-		private float kda;
-		private float kpPer;
-		private int gdTen;
-		private int xpdTen;
-		private float csdTen;
-		private float cspm;
+		public string player;
+		public string team;
+		public string position;
+		public int games;
+		public float winPer;
+		public int kills;
+		public int deaths;
+		public int assists;
+		public float kda;
+		public float kpPer;
+		public int gdTen;
+		public int xpdTen;
+		public float csdTen;
+		public float cspm;
 		
 		public playerStatRow(string player, string team, string position, int games, float winPer, int kills, int deaths, int assists, 
 								float kda, float kpPer, int gdTen, int xpdTen, float csdTen, float cspm)
