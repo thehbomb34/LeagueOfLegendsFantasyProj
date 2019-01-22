@@ -33,19 +33,17 @@ namespace WindowsFormsApplication2
 			return teamTable;
 		}
 
-		public DataTable getPlayerIdByName(string playerName)
+		public int getPlayerIdByName(string playerName)
 		{
-			DataTable playerNameTable = new DataTable();
+			int playerId;
 			string playerNameQuery = "select PLAYER_ID from LeagueOfLegendsStats.dbo.League_Player where PLAYER_NAME like @playerName";
 			SqlCommand command = new SqlCommand(playerNameQuery, this.con);
 			this.con.Open();
 
 			command.Parameters.AddWithValue("@playerName", playerName);
-			SqlDataAdapter data = new SqlDataAdapter(command);
-			data.Fill(playerNameTable);
+			playerId = Convert.ToInt32(command.ExecuteScalar());
 			this.con.Close();
-			data.Dispose();
-			return playerNameTable;
+			return playerId;
 		}
 
 		public int getTeamIdByName(string teamName)
@@ -61,27 +59,25 @@ namespace WindowsFormsApplication2
 			return teamId;
 		}
 
-		public DataTable getPosIdByName(string posName)
+		public int getPosIdByName(string posName)
 		{
-			DataTable posNameTable = new DataTable();
+			int posId;
 			string posNameQuery = "select POSITION_ID from LeagueOfLegendsStats.dbo.league_position where POSITION_DISP_NAME like @posName";
 			SqlCommand command = new SqlCommand(posNameQuery, this.con);
 			this.con.Open();
 
 			command.Parameters.AddWithValue("@posName", posName);
-			SqlDataAdapter data = new SqlDataAdapter(command);
-			data.Fill(posNameTable);
+			posId = Convert.ToInt32(command.ExecuteScalar());
 			this.con.Close();
-			data.Dispose();
-			return posNameTable;
+			return posId;
 		}
 
 		//Need to create global season table with spring / summer split for this one
-		/*public DataTable getCurrentSplitID()
+		//TODO: Update this to not be hardcoded
+		public int getCurrentSplitID()
 		{
-			DataTable splitIDTable = new DataTable();
-			string splitIDQuery = "select
-		}*/
+			return 1;
+		}
 
 		public DataTable getPlayers()
 		{
@@ -111,6 +107,16 @@ namespace WindowsFormsApplication2
 
 		public void fillPlayerStats(playerStatRow addRow)
 		{
+			int splitId = this.getCurrentSplitID();
+			string plyStQuery = "insert into LeagueOfLegendsStats.dbo.league_player_split_stats";
+			plyStQuery += " values (@playerId, @teamId, @splitId, @positionId, @gamesPlayed, @winPercentage, " +
+									"@kills, @deaths, @assists, @kda, @killPartPer, @goldDiffTen, @xpDiffTen, @csDiffTen, @csPerMin";
+			SqlCommand command = new SqlCommand(plyStQuery, this.con);
+			this.con.Open();
+
+			command.Parameters.AddWithValue("@playerId", addRow.playerId);
+			//Keep going 
+									 
 		}
 	}
 }

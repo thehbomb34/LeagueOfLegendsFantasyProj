@@ -11,6 +11,9 @@ namespace WindowsFormsApplication2
 		public string player;
 		public string team;
 		public string position;
+		public int playerId;
+		public int teamId;
+		public int posId;
 		public int games;
 		public float winPer;
 		public int kills;
@@ -29,6 +32,9 @@ namespace WindowsFormsApplication2
 			this.player = player;
 			this.team = team;
 			this.position = position;
+			this.playerId = 0;
+			this.posId = 0;
+			this.teamId = 0;
 			this.games = games;
 			this.winPer = winPer;
 			this.kills = kills;
@@ -40,6 +46,21 @@ namespace WindowsFormsApplication2
 			this.xpdTen = xpdTen;
 			this.csdTen = csdTen;
 			this.cspm = cspm;
+		}
+
+		public void setPlayerId(int playerId)
+		{
+			this.playerId = playerId;
+		}
+
+		public void setTeamId(int teamId)
+		{
+			this.teamId = teamId;
+		}
+
+		public void setPosId(int posId)
+		{
+			this.posId = posId;
 		}
 
 		public void printValues()

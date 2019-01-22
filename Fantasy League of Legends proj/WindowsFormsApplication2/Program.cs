@@ -80,6 +80,10 @@ namespace WindowsFormsApplication2
 					int playerId = dbInfo.getPlayerIdByName(rowToAdd.player);
 					int teamId = dbInfo.getTeamIdByName(rowToAdd.team);
 					int posId = dbInfo.getPosIdByName(rowToAdd.position);
+					rowToAdd.setPlayerId(playerId);
+					rowToAdd.setTeamId(teamId);
+					rowToAdd.setPosId(posId);
+					dbInfo.fillPlayerStats(rowToAdd);
 				}
 			}
 		}
