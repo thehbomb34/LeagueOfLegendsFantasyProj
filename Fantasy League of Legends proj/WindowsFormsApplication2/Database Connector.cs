@@ -48,19 +48,17 @@ namespace WindowsFormsApplication2
 			return playerNameTable;
 		}
 
-		public DataTable getTeamIdByName(string teamName)
+		public int getTeamIdByName(string teamName)
 		{
-			DataTable teamNameTable = new DataTable();
+			int teamId;
 			string teamNameQuery = "select TEAM_ID from LeagueOfLegendsStats.dbo.league_team where TEAM_NAME like @teamName";
 			SqlCommand command = new SqlCommand(teamNameQuery, this.con);
 			this.con.Open();
 
 			command.Parameters.AddWithValue("@teamName", teamName);
-			SqlDataAdapter data = new SqlDataAdapter(command);
-			data.Fill(teamNameTable);
+			teamId = Convert.ToInt32(command.ExecuteScalar());
 			this.con.Close();
-			data.Dispose();
-			return teamNameTable;
+			return teamId;
 		}
 
 		public DataTable getPosIdByName(string posName)
@@ -79,9 +77,11 @@ namespace WindowsFormsApplication2
 		}
 
 		//Need to create global season table with spring / summer split for this one
-		public DataTable getCurrentSplitID()
+		/*public DataTable getCurrentSplitID()
 		{
-		}
+			DataTable splitIDTable = new DataTable();
+			string splitIDQuery = "select
+		}*/
 
 		public DataTable getPlayers()
 		{

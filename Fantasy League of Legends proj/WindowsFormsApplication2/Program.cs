@@ -77,7 +77,9 @@ namespace WindowsFormsApplication2
 					rowParser playerStats = new rowParser(stats);
 					playerStatRow rowToAdd = playerStats.parseLine(currPlayers, currTeams);
 					rowToAdd.printValues();
-
+					int playerId = dbInfo.getPlayerIdByName(rowToAdd.player);
+					int teamId = dbInfo.getTeamIdByName(rowToAdd.team);
+					int posId = dbInfo.getPosIdByName(rowToAdd.position);
 				}
 			}
 		}
