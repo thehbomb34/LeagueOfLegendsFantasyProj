@@ -110,13 +110,27 @@ namespace WindowsFormsApplication2
 			int splitId = this.getCurrentSplitID();
 			string plyStQuery = "insert into LeagueOfLegendsStats.dbo.league_player_split_stats";
 			plyStQuery += " values (@playerId, @teamId, @splitId, @positionId, @gamesPlayed, @winPercentage, " +
-									"@kills, @deaths, @assists, @kda, @killPartPer, @goldDiffTen, @xpDiffTen, @csDiffTen, @csPerMin";
+									"@kills, @deaths, @assists, @kda, @killPartPer, @goldDiffTen, @xpDiffTen, @csDiffTen, @csPerMin)";
 			SqlCommand command = new SqlCommand(plyStQuery, this.con);
 			this.con.Open();
 
 			command.Parameters.AddWithValue("@playerId", addRow.playerId);
-			//Keep going 
-									 
+			command.Parameters.AddWithValue("@teamId", addRow.teamId);
+			command.Parameters.AddWithValue("@splitId", splitId);
+			command.Parameters.AddWithValue("@positionId", addRow.posId);
+			command.Parameters.AddWithValue("@gamesPlayed", addRow.games);
+			command.Parameters.AddWithValue("@winPercentage", addRow.winPer);
+			command.Parameters.AddWithValue("@kills", addRow.kills);
+			command.Parameters.AddWithValue("@deaths", addRow.deaths);
+			command.Parameters.AddWithValue("@assists", addRow.assists);
+			command.Parameters.AddWithValue("@kda", addRow.kda);
+			command.Parameters.AddWithValue("@killPartPer", addRow.kpPer);
+			command.Parameters.AddWithValue("@goldDiffTen", addRow.gdTen);
+			command.Parameters.AddWithValue("@xpDiffTen", addRow.xpdTen);
+			command.Parameters.AddWithValue("@csDiffTen", addRow.csdTen);
+			command.Parameters.AddWithValue("@csPerMin", addRow.cspm);
+			command.ExecuteNonQuery();
+			this.con.Close();
 		}
 	}
 }
