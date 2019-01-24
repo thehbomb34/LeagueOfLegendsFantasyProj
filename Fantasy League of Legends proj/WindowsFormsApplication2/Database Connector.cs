@@ -61,8 +61,9 @@ namespace WindowsFormsApplication2
 
 		public int getPosIdByName(string posName)
 		{
+			System.Diagnostics.Debug.WriteLine(posName);
 			int posId;
-			string posNameQuery = "select POSITION_ID from LeagueOfLegendsStats.dbo.league_position where POSITION_DISP_NAME like @posName";
+			string posNameQuery = "select POSITION_ID from LeagueOfLegendsStats.dbo.league_position where POSITION_DISP_NAME = @posName";
 			SqlCommand command = new SqlCommand(posNameQuery, this.con);
 			this.con.Open();
 
@@ -105,11 +106,13 @@ namespace WindowsFormsApplication2
 			this.con.Close();
 		}
 
+		//TODO: un-hardcode season_id value
+		//		probably need to create global season table
 		public void fillPlayerStats(playerStatRow addRow)
 		{
 			int splitId = this.getCurrentSplitID();
 			string plyStQuery = "insert into LeagueOfLegendsStats.dbo.league_player_split_stats";
-			plyStQuery += " values (@playerId, @teamId, @splitId, @positionId, @gamesPlayed, @winPercentage, " +
+			plyStQuery += " values (@playerId, @teamId, @splitId, @positionId, 201801, @gamesPlayed, @winPercentage, " +
 									"@kills, @deaths, @assists, @kda, @killPartPer, @goldDiffTen, @xpDiffTen, @csDiffTen, @csPerMin)";
 			SqlCommand command = new SqlCommand(plyStQuery, this.con);
 			this.con.Open();
