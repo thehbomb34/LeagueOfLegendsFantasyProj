@@ -18,25 +18,25 @@ namespace WindowsFormsApplication2
 		[STAThread]
 		static void Main()
 		{
+			parsePage("https://oracleselixir.com/statistics/na/na-lcs-2018-spring-regular-season-player-statistics/");
+			parsePage("https://oracleselixir.com/statistics/eu/eu-lcs-2018-summer-regular-season-player-statistics/");
+			parsePage("https://oracleselixir.com/statistics/lck/lck-2018-summer-regular-season-player-statistics/");
+			parsePage("https://oracleselixir.com/statistics/lms/lms-2018-summer-regular-season-player-statistics/");
+			parsePage("https://oracleselixir.com/statistics/lpl/lpl-2018-summer-regular-season-player-statistics/");
+		}
+
+		private static void parsePage(string url)
+		{
 			IWebDriver driver = new ChromeDriver();
-			driver.Url = "https://oracleselixir.com/statistics/na/na-lcs-2018-spring-regular-season-player-statistics/";
+			driver.Url = url;
 			var finder = driver.FindElements(By.ClassName("search-field"));
 			System.Diagnostics.Debug.WriteLine(finder.ElementAt(0).TagName);
 			System.Diagnostics.Debug.WriteLine(finder.ElementAt(0).GetAttribute("value"));
 			IWebElement team = driver.FindElement(By.XPath("//li[input/@value='TEAM']"));
 			team.Click();
-			///driver.FindElement(By.ClassName("chosen-results")).FindElement(By.LinkText("Aatrox")).Click();
 			IList<IWebElement> teams = driver.FindElements(By.CssSelector(".active-result"));
 			Database_Connector dbInfo = new Database_Connector("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;");
 			iterateTeams(teams, driver, dbInfo);
-			/*foreach (DataRow teamRow in teams.Rows)
-			{
-				foreach (var item in teamRow.ItemArray)
-				{
-					System.Diagnostics.Debug.WriteLine(item);
-				}
-			}*/
-			///System.Diagnostics.Debug.WriteLine(champ.ToString());
 			System.Threading.Thread.Sleep(3000);
 			driver.Close();
 			Application.EnableVisualStyles();
