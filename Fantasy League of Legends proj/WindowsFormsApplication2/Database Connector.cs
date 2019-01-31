@@ -12,11 +12,18 @@ namespace WindowsFormsApplication2
 	{
 		private string connect_string;
 		private SqlConnection con;
+		private int region_id;
 
-		public Database_Connector(string connect_string)
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="connect_string">da thing to connect to the database</param>
+		/// <param name="region_id">need to pass in a region id to get right season and whatnot</param>
+		public Database_Connector(string connect_string, int region_id)
 		{
 			this.connect_string = connect_string;
 			this.con = new SqlConnection(this.connect_string);
+			this.region_id = region_id;
 		}
 
 		public DataTable getTeams()
@@ -73,11 +80,31 @@ namespace WindowsFormsApplication2
 			return posId;
 		}
 
-		//Need to create global season table with spring / summer split for this one
-		//TODO: Update this to not be hardcoded
 		public int getCurrentSplitID()
 		{
-			return 1;
+			int splitID;
+			string splitQuery = "select SPLIT_ID from LeagueOfLegendsStats.dbo.SEASON_SPLIT " +
+								"where IS_CURRENT_SPLIT = 'Y'";
+			SqlCommand command = new SqlCommand(splitQuery, this.con);
+			this.con.Open();
+
+			splitID = Convert.ToInt32(command.ExecuteScalar());
+			this.con.Close();
+			return splitID;
+		}
+
+		public int getSeasonID()
+		{
+			int seasonID;
+			string seasonQuery = "SELECT SEASON_ID FROM LeagueOfLegendsStats.dbo.global_season " +
+								 " where REGION_ID = @regionID and IS_CURRENT_SEASON = 'Y'";
+			SqlCommand command = new SqlCommand(seasonQuery, this.con);
+			this.con.Open();
+
+			command.Parameters.AddWithValue("@regionID", this.region_id);
+			seasonID = Convert.ToInt32(command.ExecuteScalar());
+			this.con.Close();
+			return seasonID;
 		}
 
 		public DataTable getPlayers()
@@ -106,13 +133,12 @@ namespace WindowsFormsApplication2
 			this.con.Close();
 		}
 
-		//TODO: un-hardcode season_id value
-		//		probably need to create global season table
 		public void fillPlayerStats(playerStatRow addRow)
 		{
 			int splitId = this.getCurrentSplitID();
+			int seasonId = this.getSeasonID();
 			string plyStQuery = "insert into LeagueOfLegendsStats.dbo.league_player_split_stats";
-			plyStQuery += " values (@playerId, @teamId, @splitId, @positionId, 201801, @gamesPlayed, @winPercentage, " +
+			plyStQuery += " values (@playerId, @teamId, @splitId, @positionId, @seasonId, @gamesPlayed, @winPercentage, " +
 									"@kills, @deaths, @assists, @kda, @killPartPer, @goldDiffTen, @xpDiffTen, @csDiffTen, @csPerMin)";
 			SqlCommand command = new SqlCommand(plyStQuery, this.con);
 			this.con.Open();
@@ -121,6 +147,7 @@ namespace WindowsFormsApplication2
 			command.Parameters.AddWithValue("@teamId", addRow.teamId);
 			command.Parameters.AddWithValue("@splitId", splitId);
 			command.Parameters.AddWithValue("@positionId", addRow.posId);
+			command.Parameters.AddWithValue("@seasonId", seasonId);
 			command.Parameters.AddWithValue("@gamesPlayed", addRow.games);
 			command.Parameters.AddWithValue("@winPercentage", addRow.winPer);
 			command.Parameters.AddWithValue("@kills", addRow.kills);

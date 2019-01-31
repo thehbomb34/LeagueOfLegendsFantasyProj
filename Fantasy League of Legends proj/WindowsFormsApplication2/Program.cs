@@ -18,14 +18,14 @@ namespace WindowsFormsApplication2
 		[STAThread]
 		static void Main()
 		{
-			parsePage("https://oracleselixir.com/statistics/na/na-lcs-2018-spring-regular-season-player-statistics/");
-			parsePage("https://oracleselixir.com/statistics/eu/eu-lcs-2018-summer-regular-season-player-statistics/");
-			parsePage("https://oracleselixir.com/statistics/lck/lck-2018-summer-regular-season-player-statistics/");
-			parsePage("https://oracleselixir.com/statistics/lms/lms-2018-summer-regular-season-player-statistics/");
-			parsePage("https://oracleselixir.com/statistics/lpl/lpl-2018-summer-regular-season-player-statistics/");
+			parsePage("https://oracleselixir.com/statistics/na/na-lcs-2018-spring-regular-season-player-statistics/", 1);
+			parsePage("https://oracleselixir.com/statistics/eu/eu-lcs-2018-summer-regular-season-player-statistics/", 2);
+			parsePage("https://oracleselixir.com/statistics/lck/lck-2018-summer-regular-season-player-statistics/", 3);
+			parsePage("https://oracleselixir.com/statistics/lms/lms-2018-summer-regular-season-player-statistics/", 5);
+			parsePage("https://oracleselixir.com/statistics/lpl/lpl-2018-summer-regular-season-player-statistics/", 4);
 		}
 
-		private static void parsePage(string url)
+		private static void parsePage(string url, int regionId)
 		{
 			IWebDriver driver = new ChromeDriver();
 			driver.Url = url;
@@ -35,13 +35,10 @@ namespace WindowsFormsApplication2
 			IWebElement team = driver.FindElement(By.XPath("//li[input/@value='TEAM']"));
 			team.Click();
 			IList<IWebElement> teams = driver.FindElements(By.CssSelector(".active-result"));
-			Database_Connector dbInfo = new Database_Connector("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;");
+			Database_Connector dbInfo = new Database_Connector("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;", regionId);
 			iterateTeams(teams, driver, dbInfo);
 			System.Threading.Thread.Sleep(3000);
 			driver.Close();
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
 		}
 
 		private static void iterateTeams(IList<IWebElement> teams, IWebDriver driver, Database_Connector dbInfo)
@@ -66,12 +63,15 @@ namespace WindowsFormsApplication2
 			{
 				IWebElement currPlayer = players[j];
 				//Worst code I've ever written, but this trims out the second table results with just names
-				if (currPlayer.Text.Length < 20 && !currPlayers.AsEnumerable().Any(row => currPlayer.Text == row.Field<String>("PLAYER_NAME")))
+
+				//Really need to separate these into two separate callable methods
+				//and make it so that it doesn't insert duplicates
+				/*if (currPlayer.Text.Length < 20 && !currPlayers.AsEnumerable().Any(row => currPlayer.Text == row.Field<String>("PLAYER_NAME")))
 				{
 					dbInfo.fillPlayers(currPlayer.Text);
-				}
+				}*/
 				//code is dogshit as well, I'll fix it up sometime
-				else if (currPlayer.Text.Length > 20)
+				if (currPlayer.Text.Length > 20)
 				{
 					String[] stats = currPlayer.Text.Split();
 					rowParser playerStats = new rowParser(stats);
