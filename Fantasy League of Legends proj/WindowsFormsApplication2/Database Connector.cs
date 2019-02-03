@@ -26,6 +26,22 @@ namespace WindowsFormsApplication2
 			this.region_id = region_id;
 		}
 
+		public void cleanPlayerStatsTable(int region_id)
+		{
+			string playerQuery = "delete from LeagueOfLegendsStats.dbo.league_player_split_stats " +
+									"where season_id = (select distinct sea.season_id " +
+															"from LeagueOfLegendsStats.dbo.global_season sea, LeagueOfLegendsStats.dbo.league_player_split_stats ps " +
+															"where sea.SEASON_ID = ps.season_id " +
+															"and sea.REGION_ID = @region_id " +
+															"and sea.IS_CURRENT_SEASON = 'Y'); ";
+			SqlCommand command = new SqlCommand(playerQuery, this.con);
+			this.con.Open();
+			command.Parameters.AddWithValue("@region_id", region_id);
+
+			command.ExecuteNonQuery();
+			this.con.Close();
+		}
+
 		public DataTable getTeams()
 		{
 			DataTable teamTable = new DataTable();
@@ -149,16 +165,16 @@ namespace WindowsFormsApplication2
 			command.Parameters.AddWithValue("@positionId", addRow.posId);
 			command.Parameters.AddWithValue("@seasonId", seasonId);
 			command.Parameters.AddWithValue("@gamesPlayed", addRow.games);
-			command.Parameters.AddWithValue("@winPercentage", addRow.winPer);
+			command.Parameters.AddWithValue("@winPercentage", Convert.ToDouble(addRow.winPer));
 			command.Parameters.AddWithValue("@kills", addRow.kills);
 			command.Parameters.AddWithValue("@deaths", addRow.deaths);
 			command.Parameters.AddWithValue("@assists", addRow.assists);
-			command.Parameters.AddWithValue("@kda", addRow.kda);
-			command.Parameters.AddWithValue("@killPartPer", addRow.kpPer);
+			command.Parameters.AddWithValue("@kda", Convert.ToDouble(addRow.kda));
+			command.Parameters.AddWithValue("@killPartPer", Convert.ToDouble(addRow.kpPer));
 			command.Parameters.AddWithValue("@goldDiffTen", addRow.gdTen);
 			command.Parameters.AddWithValue("@xpDiffTen", addRow.xpdTen);
-			command.Parameters.AddWithValue("@csDiffTen", addRow.csdTen);
-			command.Parameters.AddWithValue("@csPerMin", addRow.cspm);
+			command.Parameters.AddWithValue("@csDiffTen", Convert.ToDouble(addRow.csdTen));
+			command.Parameters.AddWithValue("@csPerMin", Convert.ToDouble(addRow.cspm));
 			command.ExecuteNonQuery();
 			this.con.Close();
 		}

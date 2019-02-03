@@ -36,6 +36,7 @@ namespace WindowsFormsApplication2
 			team.Click();
 			IList<IWebElement> teams = driver.FindElements(By.CssSelector(".active-result"));
 			Database_Connector dbInfo = new Database_Connector("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;", regionId);
+			dbInfo.cleanPlayerStatsTable(regionId);
 			iterateTeams(teams, driver, dbInfo);
 			System.Threading.Thread.Sleep(3000);
 			driver.Close();

@@ -38,14 +38,14 @@ namespace WindowsFormsApplication2
 			System.Diagnostics.Debug.WriteLine("teamName: " + rowTeamName);
 			string rowPlayerPos = row[k + 1];
 			int rowGames = Int32.Parse(row[k + 2]);
-			float rowWinPer = parsePercentageToDecimal(row[k + 3]);
+			float rowWinPer = parsePercentageToDecimal(row[k + 3].Replace("-", "0.0%"));
 			int rowKills = Int32.Parse(row[k + 4]);
 			int rowDeaths = Int32.Parse(row[k + 5]);
 			int rowAssists = Int32.Parse(row[k + 6]);
 			float rowKda = float.Parse(row[k + 7]);
-			float rowKpPer = parsePercentageToDecimal(row[k + 8]);
-			int rowGdTen = Int32.Parse(row[k + 11]);
-			int rowXpdTen = Int32.Parse(row[k + 12]);
+			float rowKpPer = parsePercentageToDecimal(row[k + 8].Replace("-", "0.0%"));
+			int rowGdTen = Int32.Parse(row[k + 11].Replace(",", string.Empty));
+			int rowXpdTen = Int32.Parse(row[k + 12].Replace(",", string.Empty));
 			float rowCsdTen = float.Parse(row[k + 13]);
 			float rowCspm = float.Parse(row[k + 14]);
 			return new playerStatRow(rowPlayerName, rowTeamName, rowPlayerPos,
